@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# Allow directories (so Git can traverse them)
+!*/
+
+# Allow specific files
+!.gitignore
+!.zshrc
+# !.p10k.zsh
+!scripts/
+!scripts/utils.sh
+!.config/fontconfig/fonts.conf
+!.config/starship.toml
+!README.md
+
+# Ignore directories
+bots
+.local
+.cache
+.oh-my-zsh
+.config/discord/*
