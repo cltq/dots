@@ -40,9 +40,27 @@ pm() {
        sudo pacman -Rns "$@"
        ;;
        u|update)
-       shift
-       sudo pacman -Syu
-       ;;
+
+      # capture list of packages that will be upgraded
+      updates=$(pacman -Qu)
+
+      if [ -z "$updates" ]; then
+        echo "System is already up to date."
+        return
+      fi
+
+      echo "Updating system..."
+      sudo pacman -Syu
+
+      echo ""
+      echo "$updates" | grep -E '^(linux|linux-lts|linux-zen|systemd|glibc|mesa|nvidia)' >/dev/null
+      if [ $? -eq 0 ]; then
+        echo "⚠️  Important system packages were updated:"
+        echo "$updates" | grep -E '^(linux|linux-lts|linux-zen|systemd|glibc|mesa|nvidia)'
+        echo ""
+        echo "👉 A system restart is recommended."
+      fi
+      ;;
        s|search)
        shift
        sudo pacman -Ss "$@"
