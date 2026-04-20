@@ -17,12 +17,43 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
 
 source $ZSH/oh-my-zsh.sh
 
+# zsh and prompt related
 alias rl='source ~/.zshrc'
+alias sz='source ~/.zshrc'
 alias ss-catpuccin='starship preset catppuccin-powerline -o ~/.config/starship.toml'
 alias ss-jetpack='starship preset jetpack -o ~/.config/starship.toml'
 alias ss-tokyonight='starship preset tokyo-night -o ~/.config/starship.toml'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Arch Linux Pacman related
+pm() {
+    case "$1" in
+       i|install|get)
+       shift
+       sudo pacman -S "$@"
+       ;;
+       rm|r|remove|uninstall)
+       shift
+       sudo pacman -R "$@"
+       ;;
+       rd|remove-deps)
+       shift
+       sudo pacman -Rns "$@"
+       ;;
+       u|update)
+       shift
+       sudo pacman -Syu
+       ;;
+       s|search)
+       shift
+       sudo pacman -Ss "$@"
+       ;;
+       rs|repo-search)
+       shift
+       sudo pacman -Si "$@"
+       ;;
+    esac
+}
 
+# Prompts
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(starship init zsh)"
