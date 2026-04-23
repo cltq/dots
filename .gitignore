@@ -13,6 +13,11 @@
 !.config/fontconfig/fonts.conf
 !.config/starship.toml
 !README.md
+!backup_packages.sh
+
+# เพิ่มส่วนนี้เพื่ออนุญาตสคริปต์ติดตั้งและ log ที่มีวันที่
+!install_my_packages_*.sh
+!backup_log_*.txt
 
 # Ignore directories
 bots
@@ -21,3 +26,9 @@ bots
 .oh-my-zsh
 .config/discord/*
 Projects/*
+.cargo/
+.config.cl.bak/
+.config.fumi.bak/
+.config/quickshell/
+.config/shell/
+.tweaks/
